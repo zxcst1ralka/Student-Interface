@@ -43,6 +43,7 @@ void mainMenu() {
 }
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     SetConsoleTitleA("Система управления студентами");
 
     int choice;
@@ -67,3 +68,33 @@ int main() {
     }
 }
 
+void viewStudents() {
+    int index = 0;
+    char key;
+
+    while (true) {
+        clearScreen();
+        setColor(14);
+
+        cout << "===== ПРОСМОТР СТУДЕНТОВ =====\n\n";
+        cout << "Студент: " << students[index].name << "\n";
+        cout << "Возраст: " << students[index].age << "\n";
+        cout << "Оценка: " << students[index].grade << "\n\n";
+
+        setColor(10);
+        cout << "[A] Назад  [D] Вперед  [Q] Выйти\n";
+        setColor(7);
+
+        key = getchar();
+
+        if (key == 'a' || key == 'A') {
+            if (index > 0) index--;
+        }
+        else if (key == 'd' || key == 'D') {
+            if (index < students.size() - 1) index++;
+        }
+        else if (key == 'q' || key == 'Q') {
+            break;
+        }
+    }
+}
